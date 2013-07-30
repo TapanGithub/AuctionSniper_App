@@ -33,7 +33,7 @@ public class FakeAuctionServer {
 				});
 	}
 	
-	public void hasReceivedJoinRequestFromSniper() throws InterruptedException {
+	public void hasReceivedJoinRequestFrom(String bidder_id) throws InterruptedException {
 		messageListener.receivesAMessage();
 	}
 	public void announceClosed() throws XMPPException {

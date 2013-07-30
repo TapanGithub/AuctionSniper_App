@@ -11,7 +11,7 @@ public class AuctionSniperEndToEndTest {
 	public void sniperJoinsAuctionUntilAuctionCloses() throws Exception {
 		auction.startSellingItem();
 		application.startBiddingIn(auction);
-		auction.hasReceivedJoinRequestFromSniper();
+		auction.hasReceivedJoinRequestFrom("tapan1");
 		auction.announceClosed();
 		application.showsSniperHasLostAuction();
 	}
