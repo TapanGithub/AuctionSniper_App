@@ -14,14 +14,10 @@ public class AuctionSniperJunitTest extends
 	}
 
 	public void testServerConnection() throws Exception {
-		
 		auction.startSellingItem();
-		Solo solo = new Solo(getInstrumentation(), getActivity());
-		solo.enterText(0, "localhost");
-		solo.enterText(1, ApplicationRunner.USER_ID);
-		solo.enterText(2, ApplicationRunner.USER_PASSWORD);
+		//Solo solo = new Solo(getInstrumentation(), getActivity());
 		
-		auction.hasReceivedJoinRequestFrom(ApplicationRunner.USER_ID);
+		auction.hasReceivedJoinRequestFrom(ApplicationRunner.USERID);
 		
 	}
 }

@@ -10,7 +10,7 @@ public class FakeAuctionServer {
 	public static final String ITEM_ID_AS_LOGIN = "item-54321";
 	public static final String AUCTION_RESOURCE = "Auction";
 	public static final String XMPP_HOSTNAME = "localhost";
-	private static final String AUCTION_PASSWORD = "auction";
+	
 	//private static final String AUCTION_PORT = "9090";
 	
 	private final String itemId;
@@ -20,11 +20,12 @@ public class FakeAuctionServer {
 	this.itemId = itemId;
 	this.connection = new XMPPConnection(XMPP_HOSTNAME);
 	}
+	
 	private final SingleMessageListener messageListener = new SingleMessageListener();
+	
 	public void startSellingItem() throws XMPPException {
 		connection.connect();
-		connection.login(format(ITEM_ID_AS_LOGIN, itemId),
-				AUCTION_PASSWORD, AUCTION_RESOURCE);
+		connection.login(ApplicationRunner.USERID,ApplicationRunner.USERPASSWORD, AUCTION_RESOURCE);
 		connection.getChatManager().addChatListener(new ChatManagerListener() {
 					public void chatCreated(Chat chat, boolean createdLocally) {
 						currentChat = chat;
@@ -32,19 +33,17 @@ public class FakeAuctionServer {
 					}
 				});
 	}
-	
 	public void hasReceivedJoinRequestFrom(String bidder_id) throws InterruptedException {
 		messageListener.receivesAMessage();
 	}
+	
 	public void announceClosed() throws XMPPException {
 		currentChat.sendMessage(new Message());
 	}
+	
 	public void stop() {
 		connection.disconnect();
 	}
-	private String format(String itemIdAsLogin, String itemId2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	}
+	
+}
 	
